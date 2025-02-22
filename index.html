@@ -18,6 +18,16 @@
         pre {
             background: #efefef;
             padding: 10px;
+            overflow-x: auto;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            pre {
+                font-size: 14px;
+                padding: 5px;
+            }
         }
     </style>
 </head>
@@ -85,12 +95,4 @@ for i in range(10):
 imageio.mimsave('animated.gif', images, fps=1)</code></pre>
     
     <h2>Conclusion</h2>
-    <p><code>imageio</code> is a versatile and user-friendly package for handling images and videos in Python. Its simplicity, combined with powerful features, makes it an essential tool for developers and researchers alike. We hope this guide has provided you with a solid foundation to start using <code>imageio</code> in your projects.</p>
-    
-    <h2>References & Further Reading</h2>
-    <ul>
-        <li><a href="https://imageio.readthedocs.io/en/stable/">Official <code>imageio</code> Documentation</a></li>
-        <li><a href="https://github.com/imageio/imageio">GitHub Repository</a></li>
-    </ul>
-</body>
-</html>
+    <p><code>imageio</code> is a versatile and user-friendly package for handling images and videos in Python
