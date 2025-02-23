@@ -1,98 +1,490 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creating and Manipulating Images in Python with imageio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        h1, h2 {
-            color: #333;
-        }
+  <!-- Site made with Mobirise Website Builder v6.0.1, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v6.0.1, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/imageio-logo.webp" type="image/x-icon">
+  <meta name="description" content="">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+
+  
+  <title>Imageio</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/animatecss/animate.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=Tu0tV5"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=Tu0tV5" type="text/css">
+  <style>
+    .image-container {
+      width: 60%; /* Adjust width as needed */
+    }
+    
+    .image-container img {
+      width: 100%;
+      height: auto;
+    }
+    pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        overflow: auto;
+        white-space: pre-wrap; /* For wrapping long lines */
+    }
+    .video-container {
+      position: relative;
+      width: 60%; /* Adjust width as needed */
+      padding-bottom: 33.75%; /* Maintains aspect ratio */
+      height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    code {
+        background-color: #eaeaea;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-family: Consolas, "Courier New", monospace;
+        color: #333;
+    }
+    @media (max-width: 600px) {
         pre {
-            background: #efefef;
-            padding: 10px;
-            overflow-x: auto;
+            white-space: pre; /* For scrollable code on small screens */
         }
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            pre {
-                font-size: 14px;
-                padding: 5px;
-            }
-        }
-    </style>
+    }
+  </style>
+
+  
+  
+  
 </head>
 <body>
-    <h1>Creating and Manipulating Images in Python with <code>imageio</code></h1>
-    <h2>Introduction</h2>
-    <p>In the world of programming, handling images is a crucial aspect of various applications, from simple data visualization to complex machine learning projects. The <code>imageio</code> package in Python simplifies the process of reading and writing images. In this article, we’ll explore the functionalities offered by <code>imageio</code>, guide you through its installation, and showcase its key features with practical examples.</p>
-    
-    <h2>Installation & Setup</h2>
-    <p>Getting started with <code>imageio</code> is a breeze. Follow these steps to install and configure the package:</p>
-    <pre><code>pip install imageio</code></pre>
-    <p>To ensure seamless usage of all functionalities, install the additional plugins:</p>
-    <pre><code>pip install imageio[ffmpeg] imageio[pyav] imageio[imread]</code></pre>
-    
-    <h2>Key Features & Explanation</h2>
-    <p><code>imageio</code> offers several essential features:</p>
-    <ul>
-        <li><b>Read and Write Images</b>: Supports various formats including PNG, JPEG, GIF, TIFF, and more.</li>
-        <li><b>Video Handling</b>: Read and write video files using a wide array of codecs.</li>
-        <li><b>Metadata Access</b>: Extract metadata such as image resolution, duration, and more.</li>
-        <li><b>Cross-Platform</b>: Compatible with Windows, macOS, and Linux.</li>
-    </ul>
-    
-    <h2>Code Examples</h2>
-    <h3>Reading an Image:</h3>
-    <pre><code>import imageio
-img = imageio.imread('image.png')
-print(img.shape)</code></pre>
-    
-    <h3>Writing an Image:</h3>
-    <pre><code>import numpy as np
-img = np.zeros((100, 100), dtype=np.uint8)
-imageio.imwrite('output.png', img)</code></pre>
-    
-    <h3>Reading a Video:</h3>
-    <pre><code>import imageio
-vid = imageio.get_reader('video.mp4', 'ffmpeg')
-for frame in vid:
-    print(frame.shape)</code></pre>
-    
-    <h3>Writing a Video:</h3>
-    <pre><code>import imageio
-import numpy as np
+  
+  <section data-bs-version="5.1" class="menu menu1 cid-uDxG4Y0Fqa" once="menu" id="menu01-1m">
+	
 
-vid = imageio.get_writer('output.mp4', fps=30)
-for i in range(60):
-    frame = np.random.randint(0, 255, (100, 100, 3), dtype=np.uint8)
-    vid.append_data(frame)
-vid.close()</code></pre>
+	<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+		<div class="container">
+			<div class="navbar-brand">
+				<span class="navbar-logo">
+					
+						<img src="assets/images/imageio-logo.webp" alt="Mobirise Website Builder" style="height: 3rem;">
+					
+				</span>
+				<span class="navbar-caption-wrap"><a class="navbar-caption text-black text-primary display-4" href="index.html#top">Imageio&nbsp;</a></span>
+			</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<div class="hamburger">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item dropdown">
+						<a class="nav-link link text-black dropdown-toggle display-4" href="https://mobiri.se" aria-expanded="false" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside">User Guide&nbsp;<br></a><div class="dropdown-menu" aria-labelledby="dropdown-763"><a class="text-black dropdown-item text-primary display-4" href="index.html#article20-1o">Introduction</a><a class="text-black show dropdown-item text-primary display-4" href="index.html#article20-1q">Installation</a><a class="text-black show dropdown-item text-primary display-4" href="index.html#article20-1r">Key Features</a><a class="text-black show dropdown-item text-primary display-4" href="index.html#article20-1s">Examples</a><a class="text-black show dropdown-item text-primary display-4" href="index.html#article20-1t">Use Cases</a><a class="text-black show dropdown-item text-primary display-4" href="index.html#article20-1v">Conclusion</a><a class="text-black show dropdown-item text-primary display-4" href="index.html#article18-1y">References</a></div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link link text-black text-primary display-4" href="index.html#list03-1z">Contributing&nbsp;<br></a>
+					</li></ul>
+				
+				
+			</div>
+		</div>
+	</nav>
+</section>
+
+<section data-bs-version="5.1" class="article07 cid-uDxPf1NRZF" id="article20-1o">
+  
+
+  
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card col-md-12 col-lg-10">
+        <div class="card-wrapper">
+          <div class="col-12 content-head mt-3">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5"><strong>Manipulating Images in Python using imageio</strong></h3>
+            
+          </div>
+          <div class="card-box align-left mt-4">
+            <div class="counter-container mbr-text mbr-fonts-style display-7"><p><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">Imageio is a user-friendly Python library that simplifies the process of reading and writing various image data types. It supports a wide range of formats (like PNG and JPEG), animated images (GIF), volumetric data (such as medical imaging), and scientific data formats. With Imageio, you can easily handle tasks such as image manipulation, conversion, and analysis. It is cross-platform, runs on Python 3.9+, and is easy to install. Imageio's flexibility and ease of use make it a popular choice for both beginners and advanced users in the field of image processing.</span><br></p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="article07 cid-uDxR9zp7Qc" id="article20-1q">
+  
+
+  
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card col-md-12 col-lg-10">
+        <div class="card-wrapper">
+          <div class="col-12 content-head mt-3">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5"><strong>Installation &amp; Setup:</strong><strong><br></strong></h3>
+            
+          </div>
+          <div class="card-box align-left mt-4">
+            <div class="counter-container mbr-text mbr-fonts-style display-7"><p>Minimal requirements:</p><p>&nbsp; &nbsp; --&gt; Python 3.9+
+</p><p>&nbsp; &nbsp; --&gt; NumPy
+</p><p>&nbsp; &nbsp; --&gt; Pillow &gt;= 8.3.2
+</p><p>To install imageio, use one of the following methods:</p><p><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">--&gt; If you are in a conda env:</span></p><div>&nbsp; &nbsp; &nbsp; &nbsp; conda install -c conda-forge imageio</div><div><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">--&gt; If you have pip:</span></div><div>&nbsp; &nbsp; &nbsp; &nbsp; pip install imageio</div><div><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">--&gt; If you want to install by direct download:</span></div><div><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">&nbsp; &nbsp; &nbsp; &nbsp; python <a href="https://github.com/imageio/imageio/blob/master/setup.py" class="text-primary" target="_blank">setup.py</a> install</span></div><div>To import imageio in your Python script:
+</div><div>&nbsp; &nbsp; import imageio</div><div>
+</div><div>
+</div><p></p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="article07 cid-uDyvbAGo9c" id="article20-1r">
+  
+
+  
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card col-md-12 col-lg-10">
+        <div class="card-wrapper">
+          <div class="col-12 content-head mt-3">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5"><strong>Key Features &amp; Explanation</strong></h3>
+            
+          </div>
+          <div class="card-box align-left mt-4">
+            <div class="counter-container mbr-text mbr-fonts-style display-7"><div>1. You can read and write images in More than 295 supported <a href="https://imageio.readthedocs.io/en/stable/formats/index.html" class="text-primary" target="_blank">formats</a> like JPEG, PNG, GIF, and more.</div><div><br></div><div>2. Imageio can also read and write <a href="https://imageio.readthedocs.io/en/stable/formats/video_formats.html" class="text-primary" target="_blank">video files</a> besides images. It’s a great tool for any multimedia project. And also has Read/Write support for various resources (files, URLs, bytes, FileLike objects, ...)</div><div><br></div><div>3. It has a simple and consistent interface via a concise set of functions and a few core dependencies (only NumPy and Pillow) making it easy for both beginners and experienced developers to use.</div><div><br></div><div>4. <a href="https://imageio.readthedocs.io/en/stable/formats/formats_by_plugin.html" class="text-primary" target="_blank">Extensible Plugin System</a>: imageio uses a plugin system to manage different image formats. This makes the library flexible and easy to extend.</div><div>
+</div><div>
+</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="article07 cid-uDyAVE0F5A" id="article20-1s">
+  
+
+  
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card col-md-12 col-lg-10">
+        <div class="card-wrapper">
+          <div class="col-12 content-head mt-3">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5"><strong>Code Examples:</strong></h3>
+            
+          </div>
+          <div class="card-box align-left mt-4">
+            <div class="counter-container mbr-text mbr-fonts-style display-7"><p><strong style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">1. Reading image:-</strong><br></p><pre><code class="language-python"><p>import imageio.v3 as iio</p><p>
+
+#Reading image file "image.png"</p><p>im = iio.imread('image.png')
+</p><p>print(im.shape)</p><p>
+
+# for animated image:</p><p>import imageio.v3 as iio
+</p><p># index=None means: read all images in the file and stack along first axis
+</p><p>frames = iio.imread("anime.gif", index=None)
+</p><p>
+# ndarray with (num_frames, height, width, channel)
+</p><p>print(frames.shape)</p></pre></code><p><strong>Output:-</strong></p><p>(480, 270, 30)</p><p><br></p><p><strong>2. Reading from external sources:-</strong></p><pre><code class="language-python"><p>import imageio.v3 as iio
+</p><p>import io
+</p><p>
+# from HTTPS
+</p><p>web_image = "https://upload.wikimedia.org/wikipedia/commons/d/d3/Newtons_cradle_animation_book_2.gif"
+</p><p>frames = iio.imread(web_image, index=None)
+</p><p>
+# from bytes
+</p><p>bytes_image = iio.imwrite("&lt;bytes&gt;", frames, extension=".gif")
+</p><p>frames = iio.imread(bytes_image, index=None)
+</p><p>
+# from byte streams
+</p><p>byte_stream = io.BytesIO(bytes_image)
+</p><p>frames = iio.imread(byte_stream, index=None)
+</p><p>
+# from file objects
+</p><p>class MyFileObject:
+</p><p>&nbsp; &nbsp; def read(size:int=-1):
+</p><p>&nbsp; &nbsp; &nbsp; &nbsp; return bytes_image
+</p><p>&nbsp; &nbsp; def close():
+</p><p>&nbsp; &nbsp; &nbsp; &nbsp; return  # nothing to do
+</p><p>frames = iio.imread(MyFileObject())</p></pre></code><p><br></p><p><strong>3. Read all Images in a Folder :-</strong></p><pre><code class="language-python"><p>import imageio.v3 as iio
+</p><p>from pathlib import Path
+</p><p>
+images = list()
+</p><p>for file in Path("path/to/folder").iterdir():
+</p><p>&nbsp; &nbsp; if not file.is_file():
+</p><p>&nbsp; &nbsp; &nbsp; &nbsp; continue
+</p><p>&nbsp; &nbsp; images.append(iio.imread(file))</p></pre></code><p><br></p><p>
+</p><p><strong>4.Grab screenshot or image from the clipboard</strong></p><pre><code class="language-python"><p>import imageio.v3 as iio
+</p><p>
+im_screen = iio.imread('&lt;screen&gt;')
+</p><p>im_clipboard = iio.imread('&lt;clipboard&gt;')</p></pre></code><p><br></p><p><strong>5.Grab frames from your webcam</strong></p><p><strong>--&gt;&nbsp; &nbsp;For this to work, you need to install the ffmpeg backend:
+</strong></p><p><strong>
+</strong></p><p><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pip install imageio[ffmpeg]</span><br></p><p><br></p><p>
+<pre><code class="language-python">import imageio.v3 as iio
+</p><p>import numpy as np
+</p><p>for idx, frame in enumerate(iio.imiter("&lt;video0&gt;")):
+</p><p>&nbsp; &nbsp; print(f"Frame {idx}: avg. color {np.sum(frame, axis=-1)}")</p></pre></code><p><br></p><p><strong>6. Convert a short movie to grayscale</strong></p><p><strong>--&gt;&nbsp; &nbsp;For this to work, you need to install the ffmpeg backend:
+</strong></p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pip install imageio[ffmpeg]
+</p><pre><code class="language-python"><p>import imageio as iio
+</p><p>import numpy as np
+</p><p>
+</p><p><strong><br></strong></p><p># Read the video using get_reader
+</p><p>video_reader = iio.get_reader("example.mp4")
+</p><p><br></p><p>
+# Extract metadata
+</p><p>metadata = video_reader.get_meta_data()
+</p><p><br></p><p>
+# Read frames
+</p><p>frames = []
+</p><p>for frame in video_reader:
+</p><p>&nbsp; &nbsp; frames.append(frame)
+</p><p>frames = np.array(frames)
+</p><p><br></p><p>
+# Manually convert the video to grayscale
+</p><p>gray_frames = np.dot(frames[..., :3], [0.2989, 0.5870, 0.1140])
+</p><p>gray_frames = np.round(gray_frames).astype(np.uint8)
+</p><p>gray_frames_as_rgb = np.stack([gray_frames] * 3, axis=-1)
+</p><p><br></p><p>
+# Write the video
+</p><p>iio.mimwrite("example_gray.mp4", gray_frames_as_rgb, fps=metadata["fps"])</p></pre></code><p><strong>--&gt; example.mp4</strong></p><p><div class="video-container"><video controls><source src="example.mp4" type="video/mp4"></video></div></p><p><strong>Output:-</strong></p><p><strong>--&gt; example_grey.mp4</strong></p><p><div class="video-container"><video controls><source src="your_video.mp4" type="video/mp4"></video></div></p><p><strong>7. Read or iterate frames in a video</strong></p><p><strong>--&gt;&nbsp; &nbsp;For this to work, you need to install the pyav backend:
+</strong></p><p>pip install av
+</p><pre><code class="language-python"><p>import imageio.v3 as iio
+</p><p>
+# read a single frame
+</p><p>frame = iio.imread(
+</p><p>&nbsp; &nbsp; "example.mp4",
+</p><p>&nbsp; &nbsp; index=42,
+</p><p>&nbsp; &nbsp; plugin="pyav",
+</p><p>)
+</p><p>
+# bulk read all frames
+</p><p># Warning: large videos will consume a lot of memory (RAM)
+</p><p>frames = iio.imread("example.mp4", plugin="pyav")
+</p><p>
+# iterate over large videos
+</p><p>for frame in iio.imiter("example.mp4", plugin="pyav"):
+</p><p>&nbsp; &nbsp; print(frame.shape, frame.dtype)</p></pre></code><p><strong>Output:-</strong>&nbsp;</p><p>
+</p><p>(270, 480, 3) uint8
+</p><p>(270, 480, 3) uint8
+</p><p>(270, 480, 3) uint8
+</p><p><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">&nbsp; &nbsp; .................</span></p><p><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">(270, 480, 3) uint8</span><br></p><p><strong>8. Re-encode a (large) video
+</strong></p><p><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));"><strong>--&gt;&nbsp; &nbsp;For this to work, you need to install the pyav backend:</strong></span><br></p><p>pip install av
+</p><pre><code class="language-python"><p>import imageio.v3 as iio
+</p><p>
+# assume this is too large to keep all frames in memory
+</p><p>source = "example.mp4"
+</p><p>dest = "reencoded_example.mkv"
+</p><p>fps = iio.immeta(source, plugin="pyav")["fps"]
+</p><p>with iio.imopen(dest, "w", plugin="pyav") as out_file:
+</p><p>&nbsp; &nbsp; out_file.init_video_stream("vp9", fps=fps)
+</p><p>&nbsp; &nbsp; for frame in iio.imiter(source, plugin="pyav"):
+</p><p>&nbsp; &nbsp; &nbsp; &nbsp; out_file.write_frame(frame)</p></pre></code><p><strong>Output:-</strong>&nbsp;</p><p>--&gt;&nbsp; &nbsp;reencoded_example.mkv</p><p><div class="video-container"><video controls><source src="example.mp4" type="video/mp4"></video></div></p><p>
+</p><p><strong>9. Read medical data (DICOM)
+</strong></p><pre><code class="language-python"><p>import imageio.v3 as iio
+</p><p>dirname = 'path/to/dicom/files'
+</p><p>
+# Read multiple images of different shape
+</p><p>ims = [img for img in iio.imiter(dirname, plugin='DICOM')]
+</p><p>
+# Read as volume
+</p><p>vol = iio.imread(dirname, plugin='DICOM')
+</p><p>
+# Read multiple volumes of different shape
+</p><p>vols = [img for img in iio.imiter(dirname, plugin='DICOM')]
+</p></pre></code><p><strong>10. Writing videos with FFMPEG and vaapi
+</strong></p><p>Using vaapi can help free up CPU time on your device while you are encoding videos. One notable difference between vaapi and x264 is that vaapi doesn’t support the color format yuv420p.
+</p><p><strong>--&gt;&nbsp; you will need ffmpeg compiled with vaapi for this to work.
+</strong></p><pre><code class="language-python"><p>import imageio.v2 as iio
+</p><p>import numpy as np
+</p><p>
+</p><p><strong><br></strong></p><p># All images must be of the same size
+</p><p>image1 = np.stack([iio.imread('mountain.jpg')] * 3, 2)
+</p><p>image2 = iio.imread('sky1.jpg')
+</p><p>image3 = iio.imread('sky2.jpg')
+</p><p><br></p><p>
+# Write the video
+</p><p>w = iio.get_writer('my_video.mp4', format='FFMPEG', mode='I', fps=1, codec='libx264')
+</p><p>w.append_data(image1)
+</p><p>w.append_data(image2)
+</p><p>w.append_data(image3)
+</p><p>w.close()</p></pre></code><p><strong>A little bit of explanation:</strong></p><p><strong>---&gt;&nbsp;&nbsp;</strong><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">output_params</span></p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; * vaapi_device specifies the encoding device that will be used.
+</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; * vf and format tell ffmpeg that it must upload to the dedicated hardware. Since vaapi only supports a subset of color formats, we ensure that the video is in either gray or nv12 before uploading it. The or operation is achieved with |.</p><p><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">---&gt; pixelformat: set to 'vaapi_vld' to avoid a warning in ffmpeg.</span></p><p>---&gt; codec: the code you wish to use to encode the video. Make sure your hardware supports the chosen codec. If your hardware supports h265, you may be able to encode using 'hevc_vaapi'</p><p><strong>--&gt;mountain.jpg</strong></p><p><div class="image-container"> <img src="mountain.jpg" alt="Description of Image"> </div></p><p><strong>--&gt;sky1.jpg</strong></p><p><div class="image-container"> <img src="sky1.jpg" alt="Description of Image"> </div></p><p><strong>--&gt;sky2.jpg</strong></p><p><div class="image-container"> <img src="sky2.jpg" alt="Description of Image"> </div></p><p><strong>--&gt;&nbsp; &nbsp;Output:-</strong></p><p><div class="video-container"><video controls><source src="my_video.mp4" type="video/mp4"></video></div></p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p>
+</p><p><strong>
+</strong></p><p><strong>
+</strong></p><p>
+</p><p>
+</p><p>
+</p><p><strong>
+</strong></p><p><strong>
+</strong></p><p><strong>
+</strong></p><p><strong>
+</strong></p><p><strong>
+</strong></p><p><strong>
+</strong></p><p><strong>
+</strong></p><p>
+</p><p><strong>
+</strong></p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="article07 cid-uDBwDLIqOx" id="article20-1t">
+  
+
+  
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card col-md-12 col-lg-10">
+        <div class="card-wrapper">
+          <div class="col-12 content-head mt-3">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5"><strong>Use cases:-</strong></h3>
+            
+          </div>
+          <div class="card-box align-left mt-4">
+            <div class="counter-container mbr-text mbr-fonts-style display-7"><p>Data Analysis: Incorporate imageio into your data analysis workflow to easily read, manipulate, and save image data. It's perfect for visualising data insights and generating graphical reports. It is also used in machine learning to preprocess<span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">&nbsp;images for machine learning models by resizing, cropping, and </span><span style="font-size: 22.1935px;">normalising</span><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">&nbsp;them with imageio. It's beneficial for preparing large datasets for training and testing image recognition algorithms.</span></p><p><br></p><p>Medical Imaging: Use imageio to handle medical images such as X-rays, MRIs, and CT scans. Its support for different image formats ensures compatibility with various medical imaging software and systems.</p><p><br></p><p>Web Development: Integrate imageio into web applications to handle image uploads, processing, and storage. It helps create dynamic web content and improve user experience.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="article07 cid-uDC3HjNiUO" id="article20-1v">
+  
+
+  
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card col-md-12 col-lg-10">
+        <div class="card-wrapper">
+          <div class="col-12 content-head mt-3">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5"><span style="font-size: 31.4837px;"><strong>Conclusion</strong></span><strong>:-</strong></h3>
+            <h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-4 display-7">Imageio is an easy-to-use and flexible image processing library. It handles a wide range of image and video formats and features a straightforward API, making it an excellent utility for developers, data scientists, and creatives alike. From prepping images for machine learning to working with medical images or creative projects, imageio has the functionality and flexibility you require. Its robust plugins enable you to manage advanced image tasks easily. By leveraging imageio, you can reduce your image processing efforts and devote more time to your creative and analytical tasks.</h5>
+          </div>
+          <div class="card-box align-left mt-4">
+            <div class="counter-container mbr-text mbr-fonts-style display-7"><p><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">Happy coding!</span><br></p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="article18 cid-uDC5fBUgFJ" id="article18-1y">
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="counter-container col-md-12 col-lg-8">
+        <div class="row mb-5 justify-content-center">
+          <div class="col-12 content-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5"><strong>References &amp; Further Reading:</strong></h3>
+            
+          </div>
+        </div>
+        <div class="mbr-text mbr-fonts-style display-7">
+          <ul>
+            <li><strong>Official documentation:</strong> <a href="https://imageio.readthedocs.io/en/stable/index.html" class="text-primary" target="_blank">imageio documentation</a></li><li><strong>Tutorials:</strong>&nbsp;<a href="https://www.geeksforgeeks.org/getting-started-with-imageio-library-in-python/" class="text-primary" target="_blank">Geeksforgeeks</a></li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="list03 cid-uDC6SbuiAS" id="list03-1z">
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 mb-5 content-head">
+        <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5"><strong>Contributions</strong></h3>
+        
+      </div>
+    </div>
+
+    <div class="row justify-content-left item features-without-image mt-0 mb-5 active">
+      <div class="col-12 col-md-12 col-lg-3">
+        <h5 class="mbr-card-title mbr-fonts-style mt-0 mb-3 display-7">
+          <strong>About Us</strong>
+        </h5>
+      </div>
+      <div class="col-md-12 col-lg-8 item-wrapper">
+        <p class="mbr-text mbr-fonts-style mt-0 mb-0 display-7">Moram Raghavendra Sri Koushik ( 24110210 )<br>Bhava Ram ( 24110083 )<br>Saladi Suchith ( 24110313 )<br><br>IITGn Students B-Tech 1st year&nbsp;<br>For PSDV Course Project</p>
+      </div>
+    </div>
     
-    <h2>Use Cases</h2>
-    <h3>Data Augmentation:</h3>
-    <p>Enhance training datasets for machine learning by manipulating images.</p>
-    <pre><code>img = imageio.imread('image.png')
-flipped_img = np.flipud(img)
-imageio.imwrite('flipped_image.png', flipped_img)</code></pre>
     
-    <h3>Animated GIFs:</h3>
-    <p>Create animated GIFs from a series of images.</p>
-    <pre><code>import imageio
-images = []
-for i in range(10):
-    img = imageio.imread(f'image_{i}.png')
-    images.append(img)
-imageio.mimsave('animated.gif', images, fps=1)</code></pre>
-    
-    <h2>Conclusion</h2>
-    <p><code>imageio</code> is a versatile and user-friendly package for handling images and videos in Python
+
+  </div>
+</section><section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;    align-content: center;display: flex;position: relative;height: 4rem;"><a href="https://mobiri.se/2195509" style="flex: 1 1;height: 4rem;position: absolute;width: 100%;z-index: 1;"><img alt="" style="height: 4rem;" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></a><p style="margin: 0;text-align: center;" class="display-7">&#8204;</p><a style="z-index:1" href="https://mobirise.com"> Website Building Software</a></section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
+  
+  
+  <input name="animation" type="hidden">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+  </body>
+</html>
