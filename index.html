@@ -208,10 +208,8 @@ im = iio.imread('image.png')
 </p><p>frames = iio.imread("anime.gif", index=None)
 </p><p>
 # ndarray with (num_frames, height, width, channel)
-</p><p>print(frames.shape)</p></pre></code><p><strong>Output:-</strong></p><p>(480, 270, 30)
-<br>
-<br>
-(36, 150, 200, 3)</p><p><br></p><p><strong>2. Reading from external sources:-</strong></p><pre><code class="language-python"><p>import imageio.v3 as iio
+</p><p>print(frames.shape)</p></pre></code><p><strong>Output:-</strong></p><p><div class="image-container"> <img src="ss1.png" alt="Description of Image"> </div>
+</p><p><br></p><p><strong>2. Reading from external sources:-</strong></p><pre><code class="language-python"><p>import imageio.v3 as iio
 </p><p>import io
 </p><p>
 # from HTTPS
@@ -249,7 +247,7 @@ im_screen = iio.imread('&lt;screen&gt;')
 <pre><code class="language-python">import imageio.v3 as iio
 </p><p>import numpy as np
 </p><p>for idx, frame in enumerate(iio.imiter("&lt;video0&gt;")):
-</p><p>&nbsp; &nbsp; print(f"Frame {idx}: avg. color {np.sum(frame, axis=-1)}")</p></pre></code><p><br></p><p><strong>6. Convert a short movie to grayscale</strong></p><p><strong>--&gt;&nbsp; &nbsp;For this to work, you need to install the ffmpeg backend:
+</p><p>&nbsp; &nbsp; print(f"Frame {idx}: avg. color {np.sum(frame, axis=-1)}")</p></pre></code><p><p><strong>Output:-</strong></p><div class="image-container"> <img src="ss2.png" alt="Description of Image"> </div></p><br><p><strong>6. Convert a short movie to grayscale</strong></p><p><strong>--&gt;&nbsp; &nbsp;For this to work, you need to install the ffmpeg backend:
 </strong></p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pip install imageio[ffmpeg]
 </p><pre><code class="language-python"><p>import imageio as iio
 </p><p>import numpy as np
@@ -289,10 +287,7 @@ im_screen = iio.imread('&lt;screen&gt;')
 </p><p>
 # iterate over large videos
 </p><p>for frame in iio.imiter("example.mp4", plugin="pyav"):
-</p><p>&nbsp; &nbsp; print(frame.shape, frame.dtype)</p></pre></code><p><strong>Output:-</strong>&nbsp;</p><p>
-</p><p>(270, 480, 3) uint8
-</p><p>(270, 480, 3) uint8
-</p><p>(270, 480, 3) uint8
+</p><p>&nbsp; &nbsp; print(frame.shape, frame.dtype)</p></pre></code><p><strong>Output:-</strong></p><p><div class="image-container"> <img src="ss3.png" alt="Description of Image"> </div>
 </p><p><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">&nbsp; &nbsp; .................</span></p><p><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));">(270, 480, 3) uint8</span><br></p><p><strong>8. Re-encode a (large) video
 </strong></p><p><span style="font-size: calc(1.14rem + 0.26 * ((100vw - 62rem) / 25));"><strong>--&gt;&nbsp; &nbsp;For this to work, you need to install the pyav backend:</strong></span><br></p><p>pip install av
 </p><pre><code class="language-python"><p>import imageio.v3 as iio
